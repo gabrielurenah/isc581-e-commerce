@@ -1,4 +1,4 @@
-package com.pucmm.isc581_ecommerce;
+package com.pucmm.isc581_ecommerce.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Toast;
+
+import com.pucmm.isc581_ecommerce.R;
 
 public class SplashActivity extends AppCompatActivity {
 

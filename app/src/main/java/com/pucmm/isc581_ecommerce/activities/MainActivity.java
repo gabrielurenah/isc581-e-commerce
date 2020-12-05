@@ -1,4 +1,4 @@
-package com.pucmm.isc581_ecommerce;
+package com.pucmm.isc581_ecommerce.activities;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -9,6 +9,8 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.database.FirebaseDatabase;
+import com.pucmm.isc581_ecommerce.R;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
@@ -21,7 +23,11 @@ import androidx.appcompat.widget.Toolbar;
 
 public class MainActivity extends AppCompatActivity {
 
+    public static FirebaseDatabase database
+            = FirebaseDatabase.getInstance();
+
     private AppBarConfiguration mAppBarConfiguration;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
