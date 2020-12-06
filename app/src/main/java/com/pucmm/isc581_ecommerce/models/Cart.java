@@ -10,10 +10,12 @@ public class Cart {
     String id;
     float total;
     HashMap<Product, Integer> cart ;
+//    ArrayList<Product> productsa ;
 
     public Cart() {
         this.total = 0;
         cart = new HashMap<>();
+//        productsa = new ArrayList<>();
     }
 
     public String getId() {
@@ -26,6 +28,10 @@ public class Cart {
 
     public float getTotal() {
         return total;
+    }
+
+    public HashMap<Product, Integer> getCart() {
+        return cart;
     }
 
     public void pushProduct(Product product) {
@@ -61,14 +67,22 @@ public class Cart {
     }
 
 
-    public ArrayList<Product> getProducts(){
-        ArrayList<Product> products = new ArrayList<>();
+//    public ArrayList<Product> getProducts() {
+//        if(productsa!= null) {
+//            return productsa;
+//        }
+//        return new ArrayList<>();
+//    }
+
+    public ArrayList<Product> getProductsArr(){
+
+        ArrayList<Product> productsArr = new ArrayList<>();
         Log.wtf("CART GETPRODS" , String.valueOf(cart));
 
         for (Product prod : cart.keySet()) {
-            products.add(prod);
+            productsArr.add(prod);
         }
-        return products;
+        return productsArr;
     }
 
     public void deleteProduct(Product product) {
@@ -93,7 +107,15 @@ public class Cart {
     }
 
     public void cleanCart() {
+        this.id="";
         this.total = 0;
         cart = new HashMap<>();
     }
+
+//    public void populateProductsQuantity() {
+//        for (Product prod : cart.keySet()) {
+//            prod.setQuantity(String.valueOf(cart.get(prod)));
+//            Log.wtf("POPULATING PRODS", String.valueOf(prod.getQuantity()));
+//        }
+//    }
 }

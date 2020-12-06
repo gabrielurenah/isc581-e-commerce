@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.gson.Gson;
 import com.pucmm.isc581_ecommerce.R;
 import com.pucmm.isc581_ecommerce.adapters.CartProdRVAdapter;
 import com.pucmm.isc581_ecommerce.firebaseHandlers.dbHelpers.CartDB;
@@ -35,12 +36,14 @@ public class CartActivity extends AppCompatActivity {
 
         MainActivity.cart.calculateTotal();
         price.setText(String.valueOf(MainActivity.cart.getTotal()));
-        products = MainActivity.cart.getProducts();
+        products = MainActivity.cart.getProductsArr();
         Log.wtf("PLODUTS", products.toString());
         adapter = new CartProdRVAdapter(products, this);
         rv.setAdapter(adapter);
 
         fab.setOnClickListener(v -> {
+//            MainActivity.cart.populateProductsQuantity();
+
             CartDB.createOrder(MainActivity.cart);
             MainActivity.cart.cleanCart();
             finish();
