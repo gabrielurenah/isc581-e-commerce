@@ -21,6 +21,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.pucmm.isc581_ecommerce.R;
 import com.pucmm.isc581_ecommerce.Utils.Validator;
+import com.pucmm.isc581_ecommerce.firebaseHandlers.dbHelpers.CategoriesDB;
+import com.pucmm.isc581_ecommerce.firebaseHandlers.dbHelpers.ProductsDB;
+import com.pucmm.isc581_ecommerce.models.Category;
+
+import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -47,6 +52,11 @@ public class LoginActivity extends AppCompatActivity {
         progress = findViewById(R.id.log_in_progress);
 
         mAuth = FirebaseAuth.getInstance();
+//        CategoriesDB.removeProductFromCategory();
+
+       ArrayList<Category> categories  =  CategoriesDB.getCategories();
+        Log.wtf("LOG TEST OF CAT", "CATEGORIES UPDATING" + categories.toString());
+
 
         mLoginBtn.setOnClickListener(v -> {
 //            logInUser();

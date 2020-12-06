@@ -27,7 +27,7 @@ import com.pucmm.isc581_ecommerce.models.Category;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
-public class RegisterCategoryActivity extends AppCompatActivity {
+public class ManageCategoryActivity extends AppCompatActivity {
 
     private ImageView imageView;
     private EditText nameET;
@@ -94,7 +94,7 @@ public class RegisterCategoryActivity extends AppCompatActivity {
                                     category = new Category(id, name,imageUrl);
                                 }
                                 CategoriesDB.manageCategory(category.getId(), category);
-                                Toast.makeText(RegisterCategoryActivity.this, "Category Created", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ManageCategoryActivity.this, "Category Created", Toast.LENGTH_SHORT).show();
                                 finish();
                             }
                         });
@@ -103,7 +103,7 @@ public class RegisterCategoryActivity extends AppCompatActivity {
                         .addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(RegisterCategoryActivity.this, e.getMessage(),
+                                Toast.makeText(ManageCategoryActivity.this, e.getMessage(),
                                         Toast.LENGTH_SHORT).show();
 
                             }
@@ -118,7 +118,7 @@ public class RegisterCategoryActivity extends AppCompatActivity {
             }
 
             else{
-                Toast.makeText(RegisterCategoryActivity.this, "Image is needed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ManageCategoryActivity.this, "Image is needed", Toast.LENGTH_SHORT).show();
                 return;
             }
         });

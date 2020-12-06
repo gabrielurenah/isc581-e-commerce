@@ -19,7 +19,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.pucmm.isc581_ecommerce.activities.MainActivity;
 import com.pucmm.isc581_ecommerce.R;
-import com.pucmm.isc581_ecommerce.activities.RegisterCategoryActivity;
+import com.pucmm.isc581_ecommerce.activities.ManageCategoryActivity;
 import com.pucmm.isc581_ecommerce.adapters.CategoriesRVAdapter;
 import com.pucmm.isc581_ecommerce.models.Category;
 
@@ -27,7 +27,6 @@ import java.util.ArrayList;
 
 public class GalleryFragment extends Fragment {
 
-    private GalleryViewModel galleryViewModel;
     private DatabaseReference myRef = MainActivity.database.getReference("categories");
     private ArrayList<Category> categories = new ArrayList<>();
     private RecyclerView rv;
@@ -77,7 +76,7 @@ public class GalleryFragment extends Fragment {
 
 
         fab.setOnClickListener(v-> {
-            startActivity(new Intent(getActivity(), RegisterCategoryActivity.class));
+            startActivity(new Intent(getActivity(), ManageCategoryActivity.class));
         });
         return root;
     }

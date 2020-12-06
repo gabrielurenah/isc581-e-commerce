@@ -4,7 +4,6 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,43 +18,45 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.pucmm.isc581_ecommerce.R;
 import com.pucmm.isc581_ecommerce.activities.ManageCategoryActivity;
+import com.pucmm.isc581_ecommerce.activities.ManageProductActivity;
 import com.pucmm.isc581_ecommerce.firebaseHandlers.dbHelpers.CategoriesDB;
+import com.pucmm.isc581_ecommerce.firebaseHandlers.dbHelpers.ProductsDB;
 import com.pucmm.isc581_ecommerce.models.Category;
+import com.pucmm.isc581_ecommerce.models.Product;
 
 import java.util.ArrayList;
 
-public class CategoriesRVAdapter extends RecyclerView.Adapter<CategoriesRVAdapter.MyRecyclerItemViewHolder> {
+public class ProductsRVAdapter extends RecyclerView.Adapter<ProductsRVAdapter.MyRecyclerItemViewHolder>{
 
-    private ArrayList<Category> categories;
+    private ArrayList<Product> products;
     private Context context;
 
-    public CategoriesRVAdapter(ArrayList<Category> categories, Context context) {
-        this.categories = categories;
+    public ProductsRVAdapter(ArrayList<Product> products, Context context) {
+        this.products = products;
         this.context = context;
-
-        Log.wtf("ADAPTER STMG", String.valueOf(categories));
     }
 
     @NonNull
     @Override
-    public MyRecyclerItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ProductsRVAdapter.MyRecyclerItemViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).
-                inflate(R.layout.categories_card_view, parent, false);
+                inflate(R.layout.product_card_view, parent, false);
 
-        MyRecyclerItemViewHolder holder = new MyRecyclerItemViewHolder(view);
+        ProductsRVAdapter.MyRecyclerItemViewHolder holder = new ProductsRVAdapter.MyRecyclerItemViewHolder(view);
 
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyRecyclerItemViewHolder holder, int position) {
-        Category category = categories.get(position);
+    public void onBindViewHolder(@NonNull ProductsRVAdapter.MyRecyclerItemViewHolder holder, int position) {
+        Product product = products.get(position);
 
         //ASIGN IMAGE FROM RECIEVED URL FROM ARTICLE
-        Glide.with(holder.itemView).load(category.getImageUrl()).into(holder.categoryImage);
+        Glide.with(holder.itemView).load(product.getImageUrl()).into(holder.productImage);
 
         //ASSIGN TITLE FROM RECIEVED ARTICLE
-        holder.categoryName.setText(category.getName());
+        holder.productName.setText(product.getName());
+        holder.productPrice.setText(String.valueOf(product.getPrice()));
 
         holder.settingsImage.setOnClickListener(v-> {
             // setup the alert builder
@@ -68,18 +69,19 @@ public class CategoriesRVAdapter extends RecyclerView.Adapter<CategoriesRVAdapte
                 public void onClick(DialogInterface dialog, int which) {
                     switch (which) {
                         case 0:
-                            Intent intent = new Intent(context, ManageCategoryActivity.class);
-                            intent.putExtra("CategoryName", category.getName());
-                            intent.putExtra("CategoryURL", category.getImageUrl());
-                            intent.putExtra("CategoryID", category.getId());
+                            Intent intent = new Intent(context, ManageProductActivity.class);
+                            intent.putExtra("ProductName", product.getName());
+                            intent.putExtra("ProductPrice", product.getPrice());
+                            intent.putExtra("ProductURL", product.getImageUrl());
+                            intent.putExtra("ProductID", product.getUuid());
                             context.startActivity(intent);
                             break;
                         case 1:
                             AlertDialog.Builder confirm = new AlertDialog.Builder(context);
-                            confirm.setMessage("Delete Category?")
+                            confirm.setMessage("Delete Product?")
                                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
-                                            CategoriesDB.deleteCategory(category.getId());
+                                            ProductsDB.deleteProduct(product);
                                         }
                                     })
                                     .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -105,34 +107,34 @@ public class CategoriesRVAdapter extends RecyclerView.Adapter<CategoriesRVAdapte
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(context, "clicked me :D" + category.getName(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "clicked me :D" + product.getName(), Toast.LENGTH_SHORT).show();
 
             }
         });
     }
 
-
     @Override
     public int getItemCount() {
-        return categories.size();
+        return products.size();
     }
 
     public class MyRecyclerItemViewHolder extends RecyclerView.ViewHolder {
 
-        //DECLARE FIELDS
-        ImageView categoryImage;
+        ImageView productImage;
         ImageView settingsImage;
-        TextView categoryName;
+        TextView productName;
+        TextView productPrice;
         ConstraintLayout parentLayout;
 
-
-        public MyRecyclerItemViewHolder(View itemView) {
+        public MyRecyclerItemViewHolder(@NonNull View itemView) {
             super(itemView);
-            //ASSIGN ID'S
-            categoryImage = (ImageView) itemView.findViewById(R.id.category_image);
-            settingsImage = (ImageView) itemView.findViewById(R.id.category_settings);
-            categoryName = (TextView) itemView.findViewById(R.id.category_name);
-            parentLayout = (ConstraintLayout) itemView.findViewById(R.id.parent_layout);
+
+            productImage = itemView.findViewById(R.id.product_image);
+            settingsImage = itemView.findViewById(R.id.product_settings);
+            productName = itemView.findViewById(R.id.product_name);
+            productPrice = itemView.findViewById(R.id.product_price);
+            parentLayout = itemView.findViewById(R.id.parent_layout_product);
+
         }
     }
 }
