@@ -1,5 +1,6 @@
 package com.pucmm.isc581_ecommerce.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -51,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
-        Log.wtf("Log in main", "se cart+ " + cart.getProducts());
 
     }
 
@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case R.id.action_cart:
                 Toast.makeText(this, "Cart pressed", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(this, CartActivity.class));
                 break;
         }
         return super.onOptionsItemSelected(item);
