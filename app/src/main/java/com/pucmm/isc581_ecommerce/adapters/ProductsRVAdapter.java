@@ -30,11 +30,21 @@ public class ProductsRVAdapter extends RecyclerView.Adapter<ProductsRVAdapter.My
 
     private ArrayList<Product> products;
     private Context context;
+    private boolean fromCat;
 
     public ProductsRVAdapter(ArrayList<Product> products, Context context) {
         this.products = products;
         this.context = context;
+        this.fromCat = false;
     }
+
+    public ProductsRVAdapter(ArrayList<Product> products, Context context, boolean fromCat) {
+        this.products = products;
+        this.context = context;
+        this.fromCat = fromCat;
+    }
+
+
 
     @NonNull
     @Override
@@ -58,6 +68,9 @@ public class ProductsRVAdapter extends RecyclerView.Adapter<ProductsRVAdapter.My
         holder.productName.setText(product.getName());
         holder.productPrice.setText(String.valueOf(product.getPrice()));
 
+        if(fromCat) {
+            holder.settingsImage.setVisibility(View.GONE);
+        }
         holder.settingsImage.setOnClickListener(v-> {
             // setup the alert builder
 
@@ -103,14 +116,16 @@ public class ProductsRVAdapter extends RecyclerView.Adapter<ProductsRVAdapter.My
 
 
         //SETS ON CLICK LISTENER ON CARDVIEW LAYOUT TO SEND TO ARTICLEREAD ACTIVITY
-        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        if(!fromCat){
+            holder.parentLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-                Toast.makeText(context, "clicked me :D" + product.getName(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "clicked me :D" + product.getName(), Toast.LENGTH_SHORT).show();
 
-            }
-        });
+                }
+            });
+        }
     }
 
     @Override

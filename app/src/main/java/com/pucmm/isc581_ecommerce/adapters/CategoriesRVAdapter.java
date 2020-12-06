@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.pucmm.isc581_ecommerce.R;
+import com.pucmm.isc581_ecommerce.activities.CategoryViewActivity;
 import com.pucmm.isc581_ecommerce.activities.ManageCategoryActivity;
 import com.pucmm.isc581_ecommerce.firebaseHandlers.dbHelpers.CategoriesDB;
 import com.pucmm.isc581_ecommerce.models.Category;
@@ -105,7 +106,13 @@ public class CategoriesRVAdapter extends RecyclerView.Adapter<CategoriesRVAdapte
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(context, "clicked me :D" + category.getName(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(context, CategoryViewActivity.class);
+                intent.putExtra("CategoryName", category.getName());
+                intent.putExtra("CategoryURL", category.getImageUrl());
+                intent.putExtra("CategoryID", category.getId());
+              //  intent.putExtra("CategoryProds", category.getProducts());
+
+                context.startActivity(intent);
 
             }
         });

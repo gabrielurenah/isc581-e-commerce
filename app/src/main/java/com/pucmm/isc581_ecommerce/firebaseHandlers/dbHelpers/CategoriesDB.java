@@ -20,6 +20,8 @@ public class CategoriesDB {
     private static final DatabaseReference myRef = MainActivity.database.getReference("categories");
     private static boolean ran;
     private static ArrayList<Category> categories = new ArrayList<>();
+    private static Category selectedCat;
+
 
 
     public static void manageCategory(String child, Category value) {
@@ -103,4 +105,14 @@ public class CategoriesDB {
         return categories;
     }
 
+    public static ArrayList<Product> getProductsFromCategory(String id) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            categories.forEach(category -> {
+                if(category.getId().equals(id)){
+                    selectedCat = category;
+                }
+            });
+        }
+        return selectedCat.getProducts();
+    }
 }
