@@ -19,11 +19,16 @@ import com.google.android.material.floatingactionbutton.ExtendedFloatingActionBu
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 import com.pucmm.isc581_ecommerce.R;
 import com.pucmm.isc581_ecommerce.Utils.Validator;
 import com.pucmm.isc581_ecommerce.firebaseHandlers.dbHelpers.CategoriesDB;
 import com.pucmm.isc581_ecommerce.firebaseHandlers.dbHelpers.ProductsDB;
 import com.pucmm.isc581_ecommerce.models.Category;
+import com.pucmm.isc581_ecommerce.models.User;
 
 import java.util.ArrayList;
 
@@ -38,6 +43,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private ProgressBar progress;
     private FirebaseAuth mAuth;
+    private User currentUser;
+    private static final DatabaseReference userRef = MainActivity.database.getReference("users");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,8 +66,8 @@ public class LoginActivity extends AppCompatActivity {
 
 
         mLoginBtn.setOnClickListener(v -> {
-//            logInUser();
-            startActivity(new Intent(this, MainActivity.class));
+            logInUser();
+            //startActivity(new Intent(this, MainActivity.class));
 
         });
 

@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.gson.Gson;
 import com.pucmm.isc581_ecommerce.R;
 import com.pucmm.isc581_ecommerce.adapters.CartProdRVAdapter;
 import com.pucmm.isc581_ecommerce.firebaseHandlers.dbHelpers.CartDB;
@@ -41,6 +42,8 @@ public class CartActivity extends AppCompatActivity {
         rv.setAdapter(adapter);
 
         fab.setOnClickListener(v -> {
+            Gson gson = new Gson();
+            Log.wtf("CART TO CREATE",gson.toJson(MainActivity.cart));
             CartDB.createOrder(MainActivity.cart);
             MainActivity.cart.cleanCart();
             finish();

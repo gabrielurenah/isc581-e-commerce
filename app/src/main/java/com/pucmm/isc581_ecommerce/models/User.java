@@ -16,6 +16,10 @@ public class User {
         this.imageUrl = imageUrl;
     }
 
+    public User() {
+
+    }
+
     public String getName() {
         return name;
     }
