@@ -19,6 +19,7 @@ import com.bumptech.glide.Glide;
 import com.pucmm.isc581_ecommerce.R;
 import com.pucmm.isc581_ecommerce.activities.ManageCategoryActivity;
 import com.pucmm.isc581_ecommerce.activities.ManageProductActivity;
+import com.pucmm.isc581_ecommerce.activities.ProductViewActivity;
 import com.pucmm.isc581_ecommerce.firebaseHandlers.dbHelpers.CategoriesDB;
 import com.pucmm.isc581_ecommerce.firebaseHandlers.dbHelpers.ProductsDB;
 import com.pucmm.isc581_ecommerce.models.Category;
@@ -121,7 +122,12 @@ public class ProductsRVAdapter extends RecyclerView.Adapter<ProductsRVAdapter.My
                 @Override
                 public void onClick(View v) {
 
-                    Toast.makeText(context, "clicked me :D" + product.getName(), Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(context, ProductViewActivity.class);
+                    intent.putExtra("ProductName", product.getName());
+                    intent.putExtra("ProductPrice", product.getPrice());
+                    intent.putExtra("ProductURL", product.getImageUrl());
+                    intent.putExtra("ProductID", product.getUuid());
+                    context.startActivity(intent);
 
                 }
             });

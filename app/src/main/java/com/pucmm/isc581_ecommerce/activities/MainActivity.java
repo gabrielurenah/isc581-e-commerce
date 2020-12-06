@@ -1,6 +1,7 @@
 package com.pucmm.isc581_ecommerce.activities;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
@@ -11,6 +12,7 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.FirebaseDatabase;
 import com.pucmm.isc581_ecommerce.R;
+import com.pucmm.isc581_ecommerce.models.Cart;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
@@ -25,6 +27,9 @@ public class MainActivity extends AppCompatActivity {
 
     public static FirebaseDatabase database
             = FirebaseDatabase.getInstance();
+
+    public static Cart cart = new Cart();
+
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -46,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+        Log.wtf("Log in main", "se cart+ " + cart.getProducts());
+
     }
 
     @Override

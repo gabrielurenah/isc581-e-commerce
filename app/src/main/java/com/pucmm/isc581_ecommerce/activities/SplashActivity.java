@@ -8,6 +8,8 @@ import android.os.Handler;
 import android.widget.Toast;
 
 import com.pucmm.isc581_ecommerce.R;
+import com.pucmm.isc581_ecommerce.firebaseHandlers.dbHelpers.CategoriesDB;
+import com.pucmm.isc581_ecommerce.firebaseHandlers.dbHelpers.ProductsDB;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -16,6 +18,9 @@ public class SplashActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
+
+        ProductsDB.getProducts();
+        CategoriesDB.getCategories();
 
         handler = new Handler();
         Toast.makeText(SplashActivity.this, "L O A D I N G", Toast.LENGTH_SHORT).show();
