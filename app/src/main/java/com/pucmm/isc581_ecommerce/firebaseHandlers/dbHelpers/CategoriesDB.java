@@ -113,6 +113,11 @@ public class CategoriesDB {
                 }
             });
         }
-        return selectedCat.getProducts();
+        if(selectedCat.getProducts() == null) {
+            return new ArrayList<>();
+        }
+        else {
+            return selectedCat.getProducts();
+        }
     }
 }

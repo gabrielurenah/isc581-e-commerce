@@ -80,7 +80,14 @@ public class CategoriesRVAdapter extends RecyclerView.Adapter<CategoriesRVAdapte
                             confirm.setMessage("Delete Category?")
                                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
-                                            CategoriesDB.deleteCategory(category.getId());
+                                            if(category.getProducts() == null) {
+                                                CategoriesDB.deleteCategory(category.getId());
+                                            }
+                                            else if(category.getProducts().isEmpty()){
+                                                CategoriesDB.deleteCategory(category.getId());
+                                            }else {
+                                                Toast.makeText(context, "Category cannot be deleted. It has products", Toast.LENGTH_SHORT).show();
+                                            }
                                         }
                                     })
                                     .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -110,7 +117,6 @@ public class CategoriesRVAdapter extends RecyclerView.Adapter<CategoriesRVAdapte
                 intent.putExtra("CategoryName", category.getName());
                 intent.putExtra("CategoryURL", category.getImageUrl());
                 intent.putExtra("CategoryID", category.getId());
-              //  intent.putExtra("CategoryProds", category.getProducts());
 
                 context.startActivity(intent);
 
