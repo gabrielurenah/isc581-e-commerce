@@ -1,4 +1,4 @@
-package com.pucmm.isc581_ecommerce.ui.gallery;
+package com.pucmm.isc581_ecommerce.ui.category;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,7 +25,7 @@ import com.pucmm.isc581_ecommerce.models.Category;
 
 import java.util.ArrayList;
 
-public class GalleryFragment extends Fragment {
+public class CategoryFragment extends Fragment {
 
     private DatabaseReference myRef = MainActivity.database.getReference("categories");
     private ArrayList<Category> categories = new ArrayList<>();
@@ -37,7 +37,7 @@ public class GalleryFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_gallery, container, false);
+        View root = inflater.inflate(R.layout.fragment_category, container, false);
         FloatingActionButton fab = root.findViewById(R.id.category_add_gallery);
 
 

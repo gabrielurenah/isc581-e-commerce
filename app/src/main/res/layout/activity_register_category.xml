@@ -58,8 +58,6 @@
         android:layout_marginTop="16dp"
         android:gravity="center"
         android:text="Cancel"
-        android:backgroundTint="@color/gradientDark"
-        android:textColor="#fff"
         android:visibility="gone"
         app:layout_constraintEnd_toStartOf="@+id/create_category_button"
         app:layout_constraintHorizontal_bias="0.5"

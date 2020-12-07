@@ -4,25 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.slideshow.SlideshowFragment">
+    tools:context=".ui.category.CategoryFragment">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/product_refresh_layout"
+        android:id="@+id/categories_refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/product_recycler_view"
+            android:id="@+id/categories_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:listitem="@layout/product_card_view"
+            tools:listitem="@layout/categories_card_view"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="1" />
+            app:spanCount="3" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     <ProgressBar
-        android:id="@+id/product_progressbar"
+        android:id="@+id/categories_progressbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -31,7 +31,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/product_add_btn"
+        android:id="@+id/category_add_gallery"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/add_icon"

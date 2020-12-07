@@ -13,15 +13,15 @@
 
     <fragment
         android:id="@+id/nav_category"
-        android:name="com.pucmm.isc581_ecommerce.ui.gallery.GalleryFragment"
+        android:name="com.pucmm.isc581_ecommerce.ui.category.CategoryFragment"
         android:label="@string/menu_category"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_category" />
 
     <fragment
         android:id="@+id/nav_product"
-        android:name="com.pucmm.isc581_ecommerce.ui.slideshow.SlideshowFragment"
+        android:name="com.pucmm.isc581_ecommerce.ui.product.ProductFragment"
         android:label="@string/menu_product"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_product" />
 
 
     <fragment

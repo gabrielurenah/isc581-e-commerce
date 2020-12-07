@@ -39,7 +39,6 @@ import com.pucmm.isc581_ecommerce.models.Product;
 import com.theartofdev.edmodo.cropper.CropImage;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
-import java.net.URL;
 import java.util.ArrayList;
 
 public class ManageProductActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -61,7 +60,7 @@ public class ManageProductActivity extends AppCompatActivity implements AdapterV
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manage_produtc);
+        setContentView(R.layout.activity_manage_product);
 
         uuidET = findViewById(R.id.reg_product_uuid);
         nameET = findViewById(R.id.reg_product_name);

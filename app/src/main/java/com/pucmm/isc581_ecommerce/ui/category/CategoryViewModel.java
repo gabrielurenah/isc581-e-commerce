@@ -1,14 +1,14 @@
-package com.pucmm.isc581_ecommerce.ui.gallery;
+package com.pucmm.isc581_ecommerce.ui.category;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class GalleryViewModel extends ViewModel {
+public class CategoryViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public GalleryViewModel() {
+    public CategoryViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is gallery fragment");
     }
