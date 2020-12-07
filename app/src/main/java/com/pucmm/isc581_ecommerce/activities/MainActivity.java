@@ -1,5 +1,7 @@
 package com.pucmm.isc581_ecommerce.activities;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +17,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.database.FirebaseDatabase;
 import com.pucmm.isc581_ecommerce.R;
 import com.pucmm.isc581_ecommerce.models.Cart;
+import com.pucmm.isc581_ecommerce.recievers.NotificationReciever;
 
 import androidx.annotation.NonNull;
 import androidx.navigation.NavController;
@@ -24,6 +27,8 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -70,10 +75,20 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(this, "Action pressed", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.action_notifications:
-                Toast.makeText(this, "Notification pressed", Toast.LENGTH_SHORT).show();
+                Calendar calendar = Calendar.getInstance();
+                calendar.setTimeInMillis(System.currentTimeMillis());
+                calendar.set(Calendar.HOUR_OF_DAY, 10);
+                calendar.set(Calendar.MINUTE, 02);
+                calendar.set(Calendar.SECOND, 01);
+                calendar.set(Calendar.AM_PM, Calendar.PM);
+
+                Intent intent1 = new Intent(MainActivity.this, NotificationReciever.class);
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0,intent1, PendingIntent.FLAG_UPDATE_CURRENT);
+                AlarmManager am = (AlarmManager)this.getSystemService(this.ALARM_SERVICE);
+                am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_DAY, pendingIntent);
+                
                 break;
             case R.id.action_cart:
-                Toast.makeText(this, "Cart pressed", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, CartActivity.class));
                 break;
         }

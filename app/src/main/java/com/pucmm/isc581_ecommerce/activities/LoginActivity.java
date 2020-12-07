@@ -72,20 +72,7 @@ public class LoginActivity extends AppCompatActivity {
 
         mLoginBtn.setOnClickListener(v -> {
 
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTimeInMillis(System.currentTimeMillis());
-            calendar.set(Calendar.HOUR_OF_DAY, 10);
-            calendar.set(Calendar.MINUTE, 02);
-            calendar.set(Calendar.SECOND, 01);
-            calendar.set(Calendar.AM_PM, Calendar.PM);
-
-            Intent intent1 = new Intent(LoginActivity.this, NotificationReciever.class);
-            PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0,intent1, PendingIntent.FLAG_UPDATE_CURRENT);
-            AlarmManager am = (AlarmManager)this.getSystemService(this.ALARM_SERVICE);
-            am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_HOUR, pendingIntent);
-
             logInUser();
-            //startActivity(new Intent(this, MainActivity.class));
 
         });
 
