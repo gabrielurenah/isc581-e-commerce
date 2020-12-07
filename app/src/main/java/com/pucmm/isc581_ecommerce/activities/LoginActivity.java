@@ -7,6 +7,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -102,7 +103,6 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
-                            progress.setVisibility(View.INVISIBLE);
                             UsersDB.getUser();
                             //updateUI(user);
                         } else {
@@ -114,7 +114,16 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 });
 
-        startActivity(new Intent(this, MainActivity.class));
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                progress.setVisibility(View.INVISIBLE);
+                Intent intent=new Intent(LoginActivity.this,MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        },2000);
     }
 
     private Boolean validateData() {
