@@ -19,6 +19,7 @@ public class Product {
         this.categoryID = categoryID;
     }
 
+
     public String getUuid() {
         return uuid;
     }

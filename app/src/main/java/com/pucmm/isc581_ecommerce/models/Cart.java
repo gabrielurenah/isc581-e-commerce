@@ -9,7 +9,7 @@ import java.util.HashMap;
 public class Cart {
     String id;
     float total;
-    HashMap<Product, Integer> cart ;
+    HashMap<Product, Integer> cart;
 
     public Cart() {
         this.total = 0;
@@ -29,22 +29,22 @@ public class Cart {
     }
 
     public void pushProduct(Product product) {
-        if(cart.containsKey(product)) {
+        if (cart.containsKey(product)) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 cart.replace(product, cart.get(product) + 1);
             }
-        }else {
+        } else {
             cart.put(product, 1);
         }
 
-        Log.wtf("CART HASHMAP" , String.valueOf(cart));
+        Log.wtf("CART HASHMAP", String.valueOf(cart));
     }
 
     public void removeProductQuantity(Product product) {
-        if(cart.containsKey(product)) {
+        if (cart.containsKey(product)) {
 
-            if(cart.get(product) == 1) {
-                Log.wtf("CART HASHMAP" , String.valueOf(cart));
+            if (cart.get(product) == 1) {
+                Log.wtf("CART HASHMAP", String.valueOf(cart));
                 cart.remove(product);
                 return;
             }
@@ -53,17 +53,17 @@ public class Cart {
                 cart.replace(product, cart.get(product) - 1);
             }
 
-        }else {
+        } else {
             cart.put(product, 1);
         }
 
-        Log.wtf("CART HASHMAP" , String.valueOf(cart));
+        Log.wtf("CART HASHMAP", String.valueOf(cart));
     }
 
 
-    public ArrayList<Product> getProducts(){
+    public ArrayList<Product> getProducts() {
         ArrayList<Product> products = new ArrayList<>();
-        Log.wtf("CART GETPRODS" , String.valueOf(cart));
+        Log.wtf("CART GETPRODS", String.valueOf(cart));
 
         for (Product prod : cart.keySet()) {
             products.add(prod);
@@ -71,10 +71,12 @@ public class Cart {
         return products;
     }
 
+
+
     public void deleteProduct(Product product) {
-        Log.wtf("CART HASHMAP" , String.valueOf(cart));
+        Log.wtf("CART HASHMAP", String.valueOf(cart));
         cart.remove(product);
-        Log.wtf("CART HASHMAP AFTER DELETE " , String.valueOf(cart));
+        Log.wtf("CART HASHMAP AFTER DELETE ", String.valueOf(cart));
 //        CartActivity.reloadAdapter();
 
     }

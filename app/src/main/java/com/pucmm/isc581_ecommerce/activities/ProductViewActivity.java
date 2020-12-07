@@ -33,7 +33,7 @@ public class ProductViewActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_view);
 
-        Log.wtf("Log in main", "se cart+ " + MainActivity.cart.getProducts());
+//        Log.wtf("Log in main", "se cart+ " + MainActivity.cart.getProducts());
 
 
         imageView = findViewById(R.id.product_view_image);
