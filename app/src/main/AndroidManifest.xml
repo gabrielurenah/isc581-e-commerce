@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.pucmm.isc581_ecommerce">
 
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +11,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activities.ProfileViewActivity"></activity>
         <activity android:name=".activities.CartActivity" />
         <activity android:name=".activities.ProductViewActivity" />
         <activity android:name=".activities.CategoryViewActivity" />
@@ -34,6 +35,9 @@
         <activity
             android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
             android:theme="@style/Base.Theme.AppCompat" />
+
+        <receiver android:name=".recievers.NotificationReciever"/>
     </application>
+
 
 </manifest>

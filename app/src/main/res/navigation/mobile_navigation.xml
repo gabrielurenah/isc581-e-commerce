@@ -23,28 +23,19 @@
         android:label="@string/menu_product"
         tools:layout="@layout/fragment_slideshow" />
 
-    <fragment
-        android:id="@+id/nav_order"
-        android:name="com.pucmm.isc581_ecommerce.ui.home.HomeFragment"
-        android:label="@string/menu_order"
-        tools:layout="@layout/fragment_home" />
-
-    <fragment
-        android:id="@+id/nav_tracking"
-        android:name="com.pucmm.isc581_ecommerce.ui.gallery.GalleryFragment"
-        android:label="@string/menu_tracking"
-        tools:layout="@layout/fragment_gallery" />
 
     <fragment
         android:id="@+id/nav_help"
-        android:name="com.pucmm.isc581_ecommerce.ui.slideshow.SlideshowFragment"
+        android:name="com.pucmm.isc581_ecommerce.ui.help.HelpFragment"
         android:label="@string/menu_help"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_help" />
 
     <fragment
         android:id="@+id/nav_profile"
-        android:name="com.pucmm.isc581_ecommerce.ui.home.HomeFragment"
+        android:name="com.pucmm.isc581_ecommerce.ui.profile.ProfileFragment"
         android:label="@string/menu_profile"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/activity_profile_view" />
+
+
 
 </navigation>

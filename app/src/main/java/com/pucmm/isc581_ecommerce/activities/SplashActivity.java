@@ -24,6 +24,7 @@ public class SplashActivity extends AppCompatActivity {
         CategoriesDB.getCategories();
         CartDB.getOrders();
 
+
         handler = new Handler();
         Toast.makeText(SplashActivity.this, "L O A D I N G", Toast.LENGTH_SHORT).show();
         handler.postDelayed(new Runnable() {

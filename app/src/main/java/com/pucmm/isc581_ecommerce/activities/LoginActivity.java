@@ -3,6 +3,8 @@ package com.pucmm.isc581_ecommerce.activities;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,10 +29,13 @@ import com.pucmm.isc581_ecommerce.R;
 import com.pucmm.isc581_ecommerce.Utils.Validator;
 import com.pucmm.isc581_ecommerce.firebaseHandlers.dbHelpers.CategoriesDB;
 import com.pucmm.isc581_ecommerce.firebaseHandlers.dbHelpers.ProductsDB;
+import com.pucmm.isc581_ecommerce.firebaseHandlers.dbHelpers.UsersDB;
 import com.pucmm.isc581_ecommerce.models.Category;
 import com.pucmm.isc581_ecommerce.models.User;
+import com.pucmm.isc581_ecommerce.recievers.NotificationReciever;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -66,6 +71,19 @@ public class LoginActivity extends AppCompatActivity {
 
 
         mLoginBtn.setOnClickListener(v -> {
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(System.currentTimeMillis());
+            calendar.set(Calendar.HOUR_OF_DAY, 10);
+            calendar.set(Calendar.MINUTE, 02);
+            calendar.set(Calendar.SECOND, 01);
+            calendar.set(Calendar.AM_PM, Calendar.PM);
+
+            Intent intent1 = new Intent(LoginActivity.this, NotificationReciever.class);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0,intent1, PendingIntent.FLAG_UPDATE_CURRENT);
+            AlarmManager am = (AlarmManager)this.getSystemService(this.ALARM_SERVICE);
+            am.setInexactRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), AlarmManager.INTERVAL_HOUR, pendingIntent);
+
             logInUser();
             //startActivity(new Intent(this, MainActivity.class));
 
@@ -98,6 +116,7 @@ public class LoginActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
                             progress.setVisibility(View.INVISIBLE);
+                            UsersDB.getUser();
                             //updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.

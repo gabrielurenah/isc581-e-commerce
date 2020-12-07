@@ -16,14 +16,7 @@
             android:id="@+id/nav_product"
             android:icon="@drawable/ic_baseline_shopping_basket_24"
             android:title="@string/menu_product" />
-        <item
-            android:id="@+id/nav_order"
-            android:icon="@drawable/ic_baseline_insert_drive_file_24"
-            android:title="@string/menu_order" />
-        <item
-            android:id="@+id/nav_tracking"
-            android:icon="@drawable/ic_baseline_gps_fixed_24"
-            android:title="@string/menu_tracking" />
+
 
     <group android:id="@+id/group_user" android:checkableBehavior="single">
         <item
@@ -34,10 +27,6 @@
             android:id="@+id/nav_profile"
             android:icon="@drawable/ic_baseline_person_24"
             android:title="@string/menu_profile" />
-        <item
-            android:id="@+id/nav_log_out"
-            android:icon="@drawable/ic_baseline_exit_to_app_24"
-            android:title="@string/menu_log_out" />
     </group>
     </group>
 </menu>
