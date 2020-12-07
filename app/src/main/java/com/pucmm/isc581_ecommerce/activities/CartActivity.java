@@ -36,14 +36,12 @@ public class CartActivity extends AppCompatActivity {
 
         MainActivity.cart.calculateTotal();
         price.setText(String.valueOf(MainActivity.cart.getTotal()));
-        products = MainActivity.cart.getProductsArr();
+        products = MainActivity.cart.getProducts();
         Log.wtf("PLODUTS", products.toString());
         adapter = new CartProdRVAdapter(products, this);
         rv.setAdapter(adapter);
 
         fab.setOnClickListener(v -> {
-//            MainActivity.cart.populateProductsQuantity();
-
             CartDB.createOrder(MainActivity.cart);
             MainActivity.cart.cleanCart();
             finish();

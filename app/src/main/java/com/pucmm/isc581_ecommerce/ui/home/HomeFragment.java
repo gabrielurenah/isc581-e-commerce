@@ -29,7 +29,7 @@ public class HomeFragment extends Fragment {
 
         rv = root.findViewById(R.id.cart_orders_rv);
 
-        ArrayList<Cart> orders = CartDB.getOrders();
+        ArrayList<Cart> orders = CartDB.getCarts();
         Log.wtf("ORDERS IN HF",orders.toString());
         adapter = new OrdersRVAdapter(orders,getContext());
 

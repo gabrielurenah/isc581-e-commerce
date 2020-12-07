@@ -9,13 +9,11 @@ import java.util.HashMap;
 public class Cart {
     String id;
     float total;
-    HashMap<Product, Integer> cart ;
-//    ArrayList<Product> productsa ;
+    HashMap<Product, Integer> cart;
 
     public Cart() {
         this.total = 0;
         cart = new HashMap<>();
-//        productsa = new ArrayList<>();
     }
 
     public String getId() {
@@ -30,27 +28,23 @@ public class Cart {
         return total;
     }
 
-    public HashMap<Product, Integer> getCart() {
-        return cart;
-    }
-
     public void pushProduct(Product product) {
-        if(cart.containsKey(product)) {
+        if (cart.containsKey(product)) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 cart.replace(product, cart.get(product) + 1);
             }
-        }else {
+        } else {
             cart.put(product, 1);
         }
 
-        Log.wtf("CART HASHMAP" , String.valueOf(cart));
+        Log.wtf("CART HASHMAP", String.valueOf(cart));
     }
 
     public void removeProductQuantity(Product product) {
-        if(cart.containsKey(product)) {
+        if (cart.containsKey(product)) {
 
-            if(cart.get(product) == 1) {
-                Log.wtf("CART HASHMAP" , String.valueOf(cart));
+            if (cart.get(product) == 1) {
+                Log.wtf("CART HASHMAP", String.valueOf(cart));
                 cart.remove(product);
                 return;
             }
@@ -59,36 +53,30 @@ public class Cart {
                 cart.replace(product, cart.get(product) - 1);
             }
 
-        }else {
+        } else {
             cart.put(product, 1);
         }
 
-        Log.wtf("CART HASHMAP" , String.valueOf(cart));
+        Log.wtf("CART HASHMAP", String.valueOf(cart));
     }
 
 
-//    public ArrayList<Product> getProducts() {
-//        if(productsa!= null) {
-//            return productsa;
-//        }
-//        return new ArrayList<>();
-//    }
-
-    public ArrayList<Product> getProductsArr(){
-
-        ArrayList<Product> productsArr = new ArrayList<>();
-        Log.wtf("CART GETPRODS" , String.valueOf(cart));
+    public ArrayList<Product> getProducts() {
+        ArrayList<Product> products = new ArrayList<>();
+        Log.wtf("CART GETPRODS", String.valueOf(cart));
 
         for (Product prod : cart.keySet()) {
-            productsArr.add(prod);
+            products.add(prod);
         }
-        return productsArr;
+        return products;
     }
 
+
+
     public void deleteProduct(Product product) {
-        Log.wtf("CART HASHMAP" , String.valueOf(cart));
+        Log.wtf("CART HASHMAP", String.valueOf(cart));
         cart.remove(product);
-        Log.wtf("CART HASHMAP AFTER DELETE " , String.valueOf(cart));
+        Log.wtf("CART HASHMAP AFTER DELETE ", String.valueOf(cart));
 //        CartActivity.reloadAdapter();
 
     }
@@ -107,15 +95,7 @@ public class Cart {
     }
 
     public void cleanCart() {
-        this.id="";
         this.total = 0;
         cart = new HashMap<>();
     }
-
-//    public void populateProductsQuantity() {
-//        for (Product prod : cart.keySet()) {
-//            prod.setQuantity(String.valueOf(cart.get(prod)));
-//            Log.wtf("POPULATING PRODS", String.valueOf(prod.getQuantity()));
-//        }
-//    }
 }

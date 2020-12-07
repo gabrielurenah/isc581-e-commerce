@@ -12,6 +12,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.pucmm.isc581_ecommerce.R;
+import com.pucmm.isc581_ecommerce.firebaseHandlers.dbHelpers.CartDB;
 import com.pucmm.isc581_ecommerce.models.Cart;
 
 import java.util.ArrayList;
@@ -42,10 +43,10 @@ public class OrdersRVAdapter extends RecyclerView.Adapter<OrdersRVAdapter.MyRecy
     public void onBindViewHolder(@NonNull OrdersRVAdapter.MyRecyclerItemViewHolder holder, int position) {
 
         Cart cart = orders.get(position);
-//        Log.wtf("ORDERS IN ADAPTER", cart.toString() + "/" + cart.getTotal() + "\n" + cart.getProducts());
+        Log.wtf("ORDERS IN ADAPTER", cart.toString() + "/" + cart.getTotal() + "\n" + cart.getProducts() + position);
 
         holder.priceText.setText(String.valueOf(cart.getTotal()));
-//        holder.adapter = new OrderProductsRVAdapter(cart.getProducts(), context);
+        holder.adapter = new OrderProductsRVAdapter(CartDB.getOrders().get(position).getProducts(), context);
         holder.rv.setAdapter(holder.adapter);
 
         holder.constraintLayout.setOnClickListener(v-> {
